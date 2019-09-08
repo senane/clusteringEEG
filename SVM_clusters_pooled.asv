@@ -209,12 +209,12 @@ for i = 1:c.NumTestSets
 %     end
 %                     
                 
-    
     t = templateSVM('KernelFunction','linear'); %,'BoxConstraint',rang(k)); % gaussian SVM
     fitmdl = @(xtr,ytr)(fitcecoc(xtr,ytr,'Learners',t,'Prior','uniform'));
-
-    Mdl = fitmdl(pctrain,lbtrain);
     
+    disp('training model')
+    Mdl = fitmdl(pctrain,lbtrain);
+    disp('predicting')
     pred = predict(Mdl,pctest);
     
     disp('pred done')

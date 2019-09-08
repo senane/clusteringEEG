@@ -165,7 +165,7 @@ for i = 1:c.NumTestSets
 
             %dataind stores correct index / debugged index error / no need
             %to standardize the data again -SE Sep 6, 2019
-            pctest = [pctest; pc(dataind:dataind+1,:)]; % Only add the PCs for the medoids
+            pctest = [pctest; pc(dataind,:)]; % Only add the PCs for the medoids
             lbtest = [lbtest;lb(dataind)]; % Only add the label for the medoids
             
             
@@ -209,12 +209,12 @@ for i = 1:c.NumTestSets
 %     end
 %                     
                 
-    
     t = templateSVM('KernelFunction','linear'); %,'BoxConstraint',rang(k)); % gaussian SVM
     fitmdl = @(xtr,ytr)(fitcecoc(xtr,ytr,'Learners',t,'Prior','uniform'));
-
-    Mdl = fitmdl(pctrain,lbtrain);
     
+    disp('training model')
+    Mdl = fitmdl(pctrain,lbtrain);
+    disp('predicting')
     pred = predict(Mdl,pctest);
     
     disp('pred done')
