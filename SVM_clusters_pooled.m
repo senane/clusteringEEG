@@ -272,6 +272,14 @@ end
 figure;boxplot(perc_agr)
 ylabel('percentage agreement');xticklabels({'Mv1','Mv2','Mv3','MvAll','1v2','1v3','2v3'});
 
+% Stat tests
+
+%2 samp t-test
+machine = reshape(perc_agr(:,1:3),[1,15]);
+human = reshape(perc_agr(:,5:7),[1,15]);
+[h, p] = ttest2(human, machine)
+%Emile - add any others here
+
 % end
 
 % %% Testing
